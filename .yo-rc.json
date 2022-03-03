@@ -1,0 +1,16 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
+    "isCreatingSolution": true,
+    "version": "1.14.0",
+    "libraryName": "practice-webp",
+    "libraryId": "e14fe009-f688-46bb-91b6-a326b23743c4",
+    "environment": "spo",
+    "packageManager": "npm",
+    "solutionName": "practice-webp",
+    "solutionShortDescription": "practice-webp description",
+    "skipFeatureDeployment": true,
+    "isDomainIsolated": false,
+    "componentType": "webpart"
+  }
+}
