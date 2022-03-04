@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
-import styles from './components/Practice.module.scss'; 
+import { sp } from '@pnp/sp';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneDropdown,
@@ -13,23 +13,35 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
 import * as strings from 'PracticeWebPartStrings';
 import Practice from './components/Practice';
 import { IPracticeProps } from './components/IPracticeProps';
+import { IPropertyFieldList, PropertyFieldListPicker, PropertyFieldListPickerOrderBy } from '@pnp/spfx-property-controls/lib/PropertyFieldListPicker';
 
 export interface IPracticeWebPartProps {
   description: string;
   bookname:string;
 }
 
+export interface IPropertyControlsTestWebPartProps {
+  lists: string | string[]; // Stores the list ID(s)
+}
+
 export default class PracticeWebPart extends BaseClientSideWebPart<IPracticeWebPartProps> {
 
   private _isDarkTheme: boolean = false;
   private _environmentMessage: string = '';
-  private lists: IPropertyPaneDropdownOption[];
+  private lists: IPropertyFieldList | IPropertyFieldList[];
+  private list:IPropertyPaneDropdownOption[];
   private listsDropdownDisabled: boolean = false;
 
   protected onInit(): Promise<void> {
     this._environmentMessage = this._getEnvironmentMessage();
 
-    return super.onInit();
+    return super.onInit().then(
+      () =>
+      
+      sp.setup( {
+        spfxContext:this.context,
+      })
+    );
   }
 
   public render(): void {
@@ -102,10 +114,23 @@ export default class PracticeWebPart extends BaseClientSideWebPart<IPracticeWebP
                 PropertyPaneTextField('Select List', {
                   label: strings.BookFieldLabel
                 }),
-                PropertyPaneDropdown('Dropdown', {
-                  label: strings.ListFieldLabel,
-                  options: this.lists,
-                  disabled: this.listsDropdownDisabled
+                // PropertyPaneDropdown('Dropdown', {
+                //   label: strings.ListFieldLabel,
+                //   options: this.list,
+                //   disabled: this.listsDropdownDisabled
+                // }),
+                PropertyFieldListPicker('lists', {
+                  label: 'Select a list',
+                  selectedList: this.lists,
+                  includeHidden: false,
+                  orderBy: PropertyFieldListPickerOrderBy.Title,
+                  disabled: false,
+                  onPropertyChange: this.onPropertyPaneFieldChanged.bind(this),
+                  properties: this.properties,
+                  context: this.context,
+                  onGetErrorMessage: null,
+                  deferredValidationTime: 0,
+                  key: 'listPickerFieldId'
                 })
               ]
             }

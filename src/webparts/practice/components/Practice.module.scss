@@ -2,9 +2,9 @@
 
 .practice {
   overflow: hidden;
-  padding: 1em;
-  color: "[theme:bodyText, default: #323130]";
-  color: var(--bodyText);
+  // padding: 1em;
+  // color: "[theme:bodyText, default: #323130]";
+  // color: var(--bodyText);
   &.teams {
     font-family: $ms-font-family-fallbacks;
   }
@@ -18,7 +18,7 @@
   box-sizing: border-box;
   margin: 10;
   padding: 10;
-  line-height: 50px;
+  line-height: 45px;
   list-style-type: none;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
@@ -38,6 +38,20 @@
   position: relative;
 }
 
+.listWrapper{
+  text-align: center;
+}
+
+.itemStyles{
+  align-items: 'center';
+  background: white;
+  color: black;
+  margin: 10px;
+  margin-bottom: 20px;
+  justify-content: 'center';
+  width: 50;
+};
+
 .welcome {
   text-align: center;
 }
@@ -52,7 +66,6 @@
     text-decoration: none;
     color: "[theme:link, default:#03787c]";
     color: var(--link); // note: CSS Custom Properties support is limited to modern browsers only
-
     &:hover {
       text-decoration: underline;
       color: "[theme:linkHovered, default: #014446]";

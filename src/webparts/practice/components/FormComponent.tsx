@@ -14,8 +14,8 @@ export default function FormComponent() {
     
 
     const OnSubmit = () => {
-        console.log(bookname, authorname, price)
-    }
+        console.log(bookname, authorname, price);
+    };
 
     const stackTokens = { childrenGap: 50 };
     const iconProps = { iconName: 'Calendar' };
@@ -26,19 +26,29 @@ export default function FormComponent() {
     };
 
   return (
-    <div className='ms-grid' dir="ltr">
-        <form onSubmit={() => OnSubmit()} >
-            <Stack horizontalAlign='center' verticalAlign='space-evenly' horizontal tokens={stackTokens} styles={stackStyles}>
-                <Stack {...columnProps}  style={{textAlign:'left'}}>
-                    <TextField label="Book Name " placeholder='name' required value={bookname} onChange={(e) => setbookname(e.currentTarget.value)}/>
-                    <TextField label="Book Author " placeholder='author' required value={authorname} onChange={(e) => setauthorname(e.currentTarget.value)} />
-                    <TextField label="Book Price " placeholder='price' type='number' required value={price.toString()} onChange={(e) => setprice(toInteger(e.currentTarget.value))} />
-                    <PrimaryButton type='submit'>
-                        Submit    
-                    </PrimaryButton>
+    <div className='ms-Grid' dir="ltr">
+        <div className="ms-Grid-col ms-sm6 ms-md4 ms-lg2">
+            <div className="LayoutPage-demoBlock">
+                <h1>Insert Book</h1>
+            </div>
+        </div>
+        <div className="ms-Grid-col ms-sm6 ms-md8 ms-lg10">
+            <div className="LayoutPage-demoBlock">
+            <form onSubmit={() => OnSubmit()} >
+                <Stack horizontalAlign='center' verticalAlign='space-evenly' horizontal tokens={stackTokens} styles={stackStyles}>
+                    <Stack {...columnProps}  style={{textAlign:'left'}}>
+                        <TextField label="Book Name " placeholder='name' required value={bookname} onChange={(e) => setbookname(e.currentTarget.value)}/>
+                        <TextField label="Book Author " placeholder='author' required value={authorname} onChange={(e) => setauthorname(e.currentTarget.value)} />
+                        <TextField label="Book Price " placeholder='price' type='number' required value={price.toString()} onChange={(e) => setprice(toInteger(e.currentTarget.value))} />
+                        <PrimaryButton type='submit'>
+                            Submit    
+                        </PrimaryButton>
+                    </Stack>
                 </Stack>
-            </Stack>
-        </form>
+            </form>
+            </div>
+        </div>
+        
     </div>
-  )
+  );
 }
