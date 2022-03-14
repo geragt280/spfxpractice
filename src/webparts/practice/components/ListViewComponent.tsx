@@ -12,17 +12,14 @@ export interface IListViewComponentProps {
 
     
     const [items, setitems] = React.useState([]);
-    var itemlist = [];
     
     React.useEffect(() => {
-      setitems(listItems);
-      console.log('useEffect out', listItems);
-      
-    })
+      // here we set the item comming from props into the state of list items
+      setitems(listItems);      
+    });
     
-    
-    const _getSelection = (items) => {
-        console.log('Selected items:', items);
+    const _getSelection = (commingitems) => {
+        console.log('Selected items:', commingitems);
     };
 
     const _getDropFiles = (files) => {
@@ -73,12 +70,12 @@ export interface IListViewComponentProps {
           return element;
         }  
       }
-    ]
+    ];
 
     const EditButton = ({item}) => {
       return(
         <div>
-          <PrimaryButton onClick={() => {console.log(item)}}>Edit</PrimaryButton>
+          <PrimaryButton onClick={() => {console.log(item);}}>Edit</PrimaryButton>
         </div>
       );
     };
@@ -93,34 +90,7 @@ export interface IListViewComponentProps {
         //   order: GroupOrder.descending
         // }
     ];
-    // const items = [
-    //   {
-    //     id:'1',
-    //     book_name:'Grapes Joot',
-    //     book_author: 'Caneble Breed',
-    //     edit_button: EditButton,
-    //   },
-    //   {
-    //     id:'2',
-    //     book_name:'Book of worm',
-    //     book_author: 'Mamba root',
-    //     edit_button: EditButton,
-    //   },
-    //   {
-    //     id:'3',
-    //     book_name:'Godzilla',
-    //     book_author: 'Cristov godaf',
-    //     edit_button: EditButton,
-    //   },
-    //   {
-    //     id:'4',
-    //     book_name:'Moon lights',
-    //     book_author: 'Ruby Michale',
-    //     edit_button: EditButton,
-    //   }
-    // ];
     
-    console.log(items.length);
     return (
         <div>
           { items.length && <ListView

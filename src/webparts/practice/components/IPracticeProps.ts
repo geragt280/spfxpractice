@@ -1,7 +1,9 @@
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+
 export interface IPracticeProps {
   description: string;
   bookname: string;
-  context: any;
+  context: WebPartContext;
   isDarkTheme: boolean;
   environmentMessage: string;
   hasTeamsContext: boolean;
